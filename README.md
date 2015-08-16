@@ -14,3 +14,9 @@ Simulate different solutions to the classic hostages problem
 > Thus, the assertion should only be made if the hostage is 100% certain of its validity.
 > The hostages are allowed to get together one night in the courtyard, to discuss a plan.
 > What plan should they agree on, so that eventually, someone will make a correct assertion?
+
+## Run the simulation
+
+```bash
+python simulation.py
+```

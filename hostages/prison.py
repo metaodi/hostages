@@ -1,6 +1,4 @@
-from livingroom import LivingRoom
-
-from pprint import pprint
+from hostages.livingroom import LivingRoom
 import random
 
 
@@ -9,7 +7,10 @@ class Prison(object):
         self.hostages = hostages
 
         if len(hostages) != number_of_hostages:
-            raise TooFewHostagesError("There must be exactly %s hostages" % number_of_hostages)
+            raise TooFewHostagesError(
+                "There must be exactly %s hostages"
+                % number_of_hostages
+            )
         self.livingroom = LivingRoom()
         self.livingroom_register = []
 
@@ -25,7 +26,7 @@ class Prison(object):
         return hostage.were_all_hostages_in_livingroom()
 
     def notify_hostages(self):
-        map(lambda h:h.start_new_day(), self.hostages)
+        map(lambda h: h.start_new_day(), self.hostages)
 
     def pick_hostage(self):
         return random.choice(self.hostages)

@@ -18,5 +18,5 @@ Simulate different solutions to the classic hostages problem
 ## Run the simulation
 
 ```bash
-python simulation.py
+python simulation.py --runs 1 --hostages 10
 ```

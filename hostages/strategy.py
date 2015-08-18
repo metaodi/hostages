@@ -1,4 +1,5 @@
-from hostage import *
+from hostages.hostage import *  # noqa
+
 
 class Strategy(object):
     def __init__(self, number_of_hostages=100):
@@ -18,7 +19,7 @@ class RandomStrategy(Strategy):
 
 class CountStrategy(Strategy):
     def generate_hostages(self):
-        hostages = [ToggleOnceHostage(i) for i in range(1, self.number_of_hostages)]
+        hostages = [ToggleOnceHostage(i) for i in range(1, self.number_of_hostages)]  # noqa
         counter = CountHostage(0, self.number_of_hostages)
         hostages.append(counter)
         return hostages
@@ -26,5 +27,5 @@ class CountStrategy(Strategy):
 
 class PeriodStrategy(Strategy):
     def generate_hostages(self):
-        hostages = [PeriodHostage(i, self.number_of_hostages, 5) for i in range(0, self.number_of_hostages)]
+        hostages = [PeriodHostage(i, self.number_of_hostages, 20) for i in range(0, self.number_of_hostages)]  # noqa
         return hostages

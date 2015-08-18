@@ -1,10 +1,11 @@
 import random
 
+
 class Hostage(object):
     def __init__(self, id):
         self.id = id
         self.day = 0
-    
+
     def __repr__(self):
         return 'Hostage(id=%s)' % (self.id)
 
@@ -12,7 +13,7 @@ class Hostage(object):
         self.day += 1
 
     def visit_livingroom(self, light):
-        return True    
+        return True
 
     def were_all_hostages_in_livingroom(self):
         return False
@@ -68,14 +69,23 @@ class PeriodHostage(Hostage):
 
     def visit_livingroom(self, light):
         self.memory[self.id] = True
-        id_of_period = ((self.day - 1) / self.days_in_period) % (self.number_of_hostages - 1)
+        id_of_period = self.calculate_hostage_period()
         if light:
             self.memory[id_of_period] = True
-            print "I (%s) know %s has been in the living room, Total: %s" % (self, id_of_period, sum(1 for i in self.memory if i))
+            print (
+                "I (%s) know %s has been in the living room, Total: %s"
+                % (self, id_of_period, sum(1 for i in self.memory if i))
+            )
 
         if (self.day - 1) % self.days_in_period == 0:
             return False
         return (self.id == id_of_period)
+
+    def calculate_hostage_period(self):
+        if self.number_of_hostages <= 1:
+            return self.id
+        period_factor = (self.day - 1) / self.days_in_period
+        return period_factor % (self.number_of_hostages - 1)
 
     def were_all_hostages_in_livingroom(self):
         return sum(1 for i in self.memory if i) == self.number_of_hostages
@@ -89,4 +99,4 @@ class RandomHostage(Hostage):
         return True
 
     def were_all_hostages_in_livingroom(self):
-        return random.choice([True, False, False, False, False, False, False, False, False, False])
+        return random.choice([True, False, False, False, False])
